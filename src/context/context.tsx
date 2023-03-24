@@ -28,6 +28,11 @@ export const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const closeModal = () => {
     setShowModal(false);
+    setModalprops({
+      callBack: () => console.log("reset"),
+      title: "",
+      subTitle: "",
+    });
   };
 
   return (

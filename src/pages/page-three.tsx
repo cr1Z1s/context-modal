@@ -33,7 +33,7 @@ function PageTHree() {
   return (
     <div>
       {todos.map((todo) => (
-        <p>{todo.title}</p>
+        <p key={todo.id}>{todo.title}</p>
       ))}
     </div>
   );

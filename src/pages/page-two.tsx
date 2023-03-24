@@ -21,11 +21,11 @@ function PageTwo() {
   const goToPageThree = () => {
     navigate("/page-three");
     openModal();
-    setModalprops({
-      callBack: () => null,
+    setModalprops((prv) => ({
+      ...prv,
       title: "welcome to page three",
       subTitle: "you are in page three now",
-    });
+    }));
   };
 
   return (
