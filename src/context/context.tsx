@@ -16,7 +16,7 @@ export const ModalContext = createContext<ContextValue>({} as ContextValue);
 
 export const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
   const [modalProps, setModalprops] = useState<ModalProps>({
-    callBack: () => console.log("somethign"),
+    callBack: () => null,
     title: "",
     subTitle: "",
   });
