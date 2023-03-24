@@ -1,18 +1,25 @@
 import { FC, PropsWithChildren, createContext, useState } from "react";
 
+import Modal from "../components/modal";
+
 type ContextValue = {
   showModal: boolean;
   openModal: () => void;
   closeModal: () => void;
-  title: string;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
-  callBack: () => void;
-  setCallback: React.Dispatch<React.SetStateAction<() => void>>;
+  modalProps: ModalProps;
+  setModalprops: React.Dispatch<React.SetStateAction<ModalProps>>;
 };
+
+type ModalProps = { callBack: () => void; title: string; subTitle: string };
 
 export const ModalContext = createContext<ContextValue>({} as ContextValue);
 
 export const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
+  const [modalProps, setModalprops] = useState<ModalProps>({
+    callBack: () => console.log("somethign"),
+    title: "",
+    subTitle: "",
+  });
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -23,24 +30,11 @@ export const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
     setShowModal(false);
   };
 
-  const [title, setTitle] = useState("");
-
-  const [callBack, setCallback] = useState(
-    () => () => console.log("default ooops")
-  );
-
-  const contextValue = {
-    showModal,
-    openModal,
-    closeModal,
-    title,
-    setTitle,
-    callBack,
-    setCallback,
-  };
-
   return (
-    <ModalContext.Provider value={contextValue}>
+    <ModalContext.Provider
+      value={{ showModal, openModal, closeModal, modalProps, setModalprops }}
+    >
+      <Modal />
       {children}
     </ModalContext.Provider>
   );

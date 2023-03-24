@@ -11,16 +11,11 @@ import { responsivePropType } from "@mui/system";
 import viteLogo from "/vite.svg";
 
 function App() {
-  useEffect(() => {
-    console.log("app is rendered");
-  }, []);
-
   return (
     <ModalProvider>
       <div className="App">
         here some component:
         <ComponentOne />
-        <Modal />
       </div>
     </ModalProvider>
   );
